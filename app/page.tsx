@@ -7,9 +7,9 @@ const Page: React.FC = () => {
   return (
     <div className="min-h-screen mx-auto">
       <Header />
-      <section className="flex justify-center items-center">
+      <main className="container mx-auto px-4 py-8">
         <TaskBoard />
-      </section>
+      </main>
     </div>
   );
 };

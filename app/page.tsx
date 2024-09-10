@@ -1,8 +1,9 @@
-import React from "react";
-import Header from "./components/Header";
-import TaskBoard from "./components/TaskBoard";
+"use client"
+import React from 'react';
+import Header from './components/Header';
+import TaskBoard from './components/TaskBoard';
 
-const page = () => {
+const Page: React.FC = () => {
   return (
     <div className="min-h-screen mx-auto">
       <Header />
@@ -13,4 +14,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

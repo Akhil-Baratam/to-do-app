@@ -1,4 +1,7 @@
 // Import the functions you need from the SDKs you need
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
@@ -7,7 +10,7 @@ import { getFirestore } from 'firebase/firestore'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCxMbyeCNiF5_Wqdb1aQSWLsPK73B84zsc",
+  apiKey: process.env.API_KEY,
   authDomain: "to-do-app-a73d6.firebaseapp.com",
   projectId: "to-do-app-a73d6",
   storageBucket: "to-do-app-a73d6.appspot.com",

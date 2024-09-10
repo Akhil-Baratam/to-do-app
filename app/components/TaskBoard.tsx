@@ -11,7 +11,7 @@ const TaskBoard: React.FC = () => {
   useEffect(() => {
     const getTasks = async () => {
       const tasksFromFirestore = await fetchTasks();
-      setTasks(tasksFromFirestore as any); // Cast to any to bypass type issue, should be fixed to proper type
+      setTasks(tasksFromFirestore as any);
     };
 
     getTasks();
@@ -28,11 +28,11 @@ const TaskBoard: React.FC = () => {
 
   const handleTaskAdded = async () => {
     const tasksFromFirestore = await fetchTasks();
-    setTasks(tasksFromFirestore as any); // Cast to any to bypass type issue, should be fixed to proper type
+    setTasks(tasksFromFirestore as any);
   };
 
   return (
-    <div className="p-6 max-w-6xl">
+    <section className="p-6 max-w-7xl">
       <div className="flex justify-between items-center rounded-xl p-6 shadow-md bg-white">
         <h2 className="text-2xl font-semibold">Desktop & Mobile Application</h2>
         <button
@@ -63,7 +63,7 @@ const TaskBoard: React.FC = () => {
         />
       </div>
       <CreateTaskModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onTaskAdded={handleTaskAdded} />
-    </div>
+    </section>
   );
 };
 

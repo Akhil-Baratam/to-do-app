@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useDrag } from 'react-dnd';
 import { updateTask, deleteTask, Task } from '../utils/firestore';
 
@@ -16,6 +16,14 @@ const TaskCard: React.FC<Task> = ({ id, title, description, date, status }) => {
     }),
   });
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      drag(ref.current);
+    }
+  }, [ref, drag]);
+
   const handleUpdate = useCallback(async () => {
     await updateTask(id, { title: editedTitle, description: editedDescription });
     setIsEditing(false);
@@ -27,7 +35,7 @@ const TaskCard: React.FC<Task> = ({ id, title, description, date, status }) => {
 
   return (
     <div
-      ref={drag}
+      ref={ref}
       className={`bg-white p-4 rounded-lg border-2 shadow-sm mb-4 ${
         isDragging ? 'opacity-50 cursor-grabbing' : 'cursor-grab'
       }`}

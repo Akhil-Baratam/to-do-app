@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDrop } from 'react-dnd';
 import TaskCard from './TaskCard';
 import { Task } from '../utils/firestore';
@@ -12,6 +12,8 @@ interface ColumnProps {
 }
 
 const Column: React.FC<ColumnProps> = React.memo(({ title, color, tasks, onDrop }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
   const [{ isOver }, drop] = useDrop({
     accept: 'task',
     drop: (item: { id: string }) => {
@@ -24,9 +26,15 @@ const Column: React.FC<ColumnProps> = React.memo(({ title, color, tasks, onDrop 
 
   console.log(`Tasks for ${title} column:`, tasks); // Debugging line
 
+  useEffect(() => {
+    if (ref.current) {
+      drop(ref.current);
+    }
+  }, [ref, drop]);
+
   return (
     <div 
-      ref={drop} 
+      ref={ref} 
       className={`bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full ${
         isOver ? 'border-2 border-dashed border-gray-400' : ''
       }`}
